@@ -17,6 +17,13 @@ def input_students
   students
 end
 
+def filter_names(letter, students)
+  # return array of student hashes where name begins with letter
+  students.select do |student|
+    student[:name].chr == letter
+  end
+end
+
 def print_header
   puts "The students of Villains Academy"
   puts "-------------"
@@ -33,8 +40,14 @@ def print_footer(students)
 end
 
 students = input_students
+first_letter = 'A'
+name_starts_with = filter_names(first_letter, students)
 #nothing happens until we call the methods
 print_header
 print(students)
 print_footer(students)
+puts "------------"
+puts "The students whose name starts with #{first_letter} are:"
+print(name_starts_with)
+
 
