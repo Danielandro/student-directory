@@ -17,10 +17,17 @@ def input_students
   students
 end
 
-def filter_names(letter, students)
+def filter_by_initial(letter, students)
   # return array of student hashes where name begins with letter
   students.select do |student|
     student[:name].chr == letter
+  end
+end
+
+def shorter_than_12(students)
+  puts "The students with names less than 12 characters:"
+  students.select do |student|
+    student[:name].size < 12
   end
 end
 
@@ -41,13 +48,16 @@ end
 
 students = input_students
 first_letter = 'A'
-name_starts_with = filter_names(first_letter, students)
+name_starts_with = filter_by_initial(first_letter, students)
 #nothing happens until we call the methods
 print_header
 print(students)
 print_footer(students)
+# names with first same letter
 puts "------------"
 puts "The students whose name starts with #{first_letter} are:"
 print(name_starts_with)
-
+# names with less than 12 characters
+puts "------------"
+print(shorter_than_12(students))
 
