@@ -28,7 +28,6 @@ def input_students
     name = gets.chomp
   end
   # return array of students
-  puts students
   students
 end
 
@@ -55,8 +54,10 @@ def print(students)
   index = 0
   while index < students.size 
     puts "#{index + 1}. #{students[index][:name]} (#{students[index][:cohort]} cohort)"
-    puts "Place of birth - #{students[index][:country]}"
-    puts "Height - #{students[index][:height]}"
+    birth = "Place of birth: #{students[index][:country]}"
+    height = "Height: #{students[index][:height]}"
+    puts birth.center(birth.length + 6)
+    puts height.center(height.length + 6)
     index += 1
   end
 end
