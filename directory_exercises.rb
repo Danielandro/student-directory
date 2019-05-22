@@ -26,18 +26,12 @@ def input_students
   students
 end
 
-def filter_by_initial(letter, students)
-  # return array of student hashes where name begins with letter
-  students.select do |student|
-    student[:name].chr == letter
+def filter_by_cohort(students)
+  cohorts = students.map do |student|
+    student[:cohort]
   end
-end
-
-def shorter_than_12(students)
-  puts "The students with names less than 12 characters:"
-  students.select do |student|
-    student[:name].size < 12
-  end
+  
+  cohorts.uniq
 end
 
 def print_header
@@ -45,11 +39,17 @@ def print_header
   puts "-------------"
 end
 
-def print(students)
-  student_num = 0
-  while student_num < students.size 
-    puts "#{student_num + 1}. #{students[student_num][:name]} (#{students[student_num][:cohort]} cohort)"
-    student_num += 1
+def print(students, cohorts=nil)
+  cohorts.each do |cohort|
+    student_num = 0
+    puts "All the students from the #{cohort.capitalize} cohort:"
+    while student_num < students.size 
+      if students[student_num][:cohort] == cohort
+        matching_student = "#{students[student_num][:name]}"
+        puts matching_student.center(matching_student.length + 7)
+      end
+      student_num += 1
+    end
   end
 end
 
@@ -58,17 +58,8 @@ def print_footer(students)
 end
 
 students = input_students
-first_letter = 'A'
-name_starts_with = filter_by_initial(first_letter, students)
+cohorts = filter_by_cohort(students)
 #nothing happens until we call the methods
 print_header
-print(students)
+print(students, cohorts)
 print_footer(students)
-# names with first same letter
-puts "------------"
-puts "The students whose name starts with #{first_letter} are:"
-print(name_starts_with)
-# names with less than 12 characters
-puts "------------"
-print(shorter_than_12(students))
-
