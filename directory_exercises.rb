@@ -1,31 +1,26 @@
 def input_students
-  puts "Please enter the details of the students"
+  puts "Please enter the name of the student"
   puts "To finish, just hit return twice"
-  # create an empty array
+  
   students = []
-  # get first name from user
+  # get first name & cohort from user
   name = gets.chomp
+  puts "Please enter the student's cohort"
+  cohort = gets.chomp.to_s
   # while the name is not empty, repeat this code
-  while !name.empty? do
-    # add country of birth
-    puts "Enter #{name}'s country of birth"
-    place_of_birth = gets.chomp
-    # add height
-    puts "Enter #{name}'s height in cm"
-    height = gets.chomp
+  while !name.empty?  do
+    student_hash = Hash.new("Not supplied")
     # add student details to hash
-    student_hash = {
-      name: name, 
-      cohort: :november,
-      country: place_of_birth,
-      height: height
-    }
+    student_hash[:name] = name 
+    student_hash[:cohort] = cohort if !cohort.empty?
     # add the student hash to the array
     students << student_hash
     puts "Now we have #{students.count} students"
     # get another name from the user
     puts "Enter next student"
     name = gets.chomp
+    puts "Please enter the student's cohort"
+    cohort = gets.chomp.to_s
   end
   # return array of students
   students
@@ -51,14 +46,10 @@ def print_header
 end
 
 def print(students)
-  index = 0
-  while index < students.size 
-    puts "#{index + 1}. #{students[index][:name]} (#{students[index][:cohort]} cohort)"
-    birth = "Place of birth: #{students[index][:country]}"
-    height = "Height: #{students[index][:height]}"
-    puts birth.center(birth.length + 6)
-    puts height.center(height.length + 6)
-    index += 1
+  student_num = 0
+  while student_num < students.size 
+    puts "#{student_num + 1}. #{students[student_num][:name]} (#{students[student_num][:cohort]} cohort)"
+    student_num += 1
   end
 end
 
