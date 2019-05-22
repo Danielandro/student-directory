@@ -4,9 +4,9 @@ def input_students
   
   students = []
   # get first name & cohort from user
-  name = gets.chomp
+  name = gets.gsub(/[\b\n]/, '')
   puts "Please enter the student's cohort"
-  cohort = gets.chomp.to_s
+  cohort = gets.gsub(/[\b\n]/, '').to_s
   # while the name is not empty, repeat this code
   while !name.empty?  do
     student_hash = Hash.new("Not supplied")
@@ -18,9 +18,9 @@ def input_students
     puts "Now we have #{students.count} #{check_if_plural(students)}"
     # get another name from the user
     puts "Enter next student"
-    name = gets.chomp
+    name = gets.gsub(/[\b\n]/, '')
     puts "Please enter the student's cohort"
-    cohort = gets.chomp.to_s
+    cohort = gets.gsub(/[\b\n]/, '').to_s
   end
   # return array of students
   students
