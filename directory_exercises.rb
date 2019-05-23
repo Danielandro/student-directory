@@ -48,21 +48,29 @@ def print_header
 end
 
 def print(students, cohorts=nil)
-  cohorts.each do |cohort|
-    student_num = 0
-    puts "Student(s) from the #{cohort.capitalize} cohort:"
-    while student_num < students.size 
-      if students[student_num][:cohort] == cohort
-        matching_student = "#{students[student_num][:name]}"
-        puts matching_student.center(matching_student.length + 7)
+  if !students.empty?
+    cohorts.each do |cohort|
+      student_num = 0
+      puts "Student(s) from the #{cohort.capitalize} cohort:"
+      while student_num < students.size 
+        if students[student_num][:cohort] == cohort
+          matching_student = "#{students[student_num][:name]}"
+          puts matching_student.center(matching_student.length + 7)
+        end
+        student_num += 1
       end
-      student_num += 1
     end
+  else
+    puts "There are no students"
   end
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great #{check_if_plural(students)}"
+  if students.empty?
+    puts "We have no students"
+  else
+    puts "Overall, we have #{students.count} great #{check_if_plural(students)}"
+  end
 end
 
 students = input_students
