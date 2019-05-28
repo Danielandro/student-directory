@@ -2,7 +2,7 @@ def input_students
   puts "Please enter the name of the student"
   puts "To finish, just hit return twice"
   
-  students = []
+  students = [] 
   # get first name & cohort from user
   name = gets.gsub(/[\b\n]/, '')
   puts "Please enter the student's cohort"
