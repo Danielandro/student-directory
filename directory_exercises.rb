@@ -16,7 +16,7 @@ def input_students
     # add the student hash to the array
     students << student_hash
     puts "Now we have #{students.count} #{check_if_plural(students)}"
-    # get another name from the user
+    # get another name from the user 
     puts "Enter next student"
     name = gets.gsub(/[\b\n]/, '')
     puts "Please enter the student's cohort"
