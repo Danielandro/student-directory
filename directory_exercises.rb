@@ -22,7 +22,7 @@ def input_students
     puts "Please enter the student's cohort"
     cohort = gets.gsub(/[\b\n]/, '').to_s
   end
-  # return array of students
+  # return array of students 
   students
 end
 
